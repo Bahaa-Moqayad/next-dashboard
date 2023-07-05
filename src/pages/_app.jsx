@@ -15,19 +15,30 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { store } from "../store";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "../styles/index.css";
+import { fetchAllData } from "@/store/HeaderSlice";
 
 registerChartJs();
 
 const clientSideEmotionCache = createEmotionCache();
 
-export default function App(props) {
-  const { i18n } = useTranslation();
-  const [lang, setLang] = useState(
-    globalThis.localStorage?.getItem("i18nextLng")
-  );
+const DataComponent = () => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchAllData());
+  }, []);
+};
+
+export default function App(props) {
+  const { i18n } = useTranslation();
+  const [lang, setLang] = useState("en");
+
+  useEffect(() => {
+    AOS.init();
     if (lang === "ar") {
       document.documentElement.setAttribute("dir", "rtl");
     } else {
@@ -60,6 +71,7 @@ export default function App(props) {
 
   return (
     <Provider store={store}>
+      <DataComponent />
       <CacheProvider value={cacheRtl}>
         <Head>
           <title>{`${process.env.APP_NAME}`}</title>

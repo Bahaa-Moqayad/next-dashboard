@@ -2,7 +2,10 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../store/RootSlice";
-import EditProduct from "../modals/EditProduct";
+import EditAbout from "../modals/EditAbout";
+import EditFeature from "../modals/EditFeature";
+import EditFaq from "../modals/EditFaq";
+import EditTeam from "../modals/EditTeam";
 
 const style = {
   position: "absolute",
@@ -26,7 +29,10 @@ export default function DynamicModal(props) {
     dispatch(closeModal(false));
   }
   const componentsName = {
-    products: EditProduct,
+    about: EditAbout,
+    faq: EditFaq,
+    features: EditFeature,
+    teams: EditTeam,
   };
 
   const DynamicComponentName = componentsName[props.model];

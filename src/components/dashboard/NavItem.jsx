@@ -4,9 +4,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
+import Box from "@mui/material/Box";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
@@ -28,6 +28,7 @@ export default function NavItem(props) {
     holder[key] = !holder[key];
     setItemsState({ ...holder });
   };
+
   const nestedChildren = (item, item_key) => {
     if (item == null) return;
     if (item.subMenu) {
@@ -43,7 +44,10 @@ export default function NavItem(props) {
           >
             <ListItemIcon
               sx={{
-                color: router.pathname === item.href ? "#10B981" : "#D1D5DB",
+                color:
+                  router.pathname === `admin/${item.href}`
+                    ? "#10B981"
+                    : "#D1D5DB",
               }}
             >
               {item.icon}
@@ -62,8 +66,8 @@ export default function NavItem(props) {
       );
     } else {
       return (
-        <NextLink
-          href={item.href}
+        <Box
+          onClick={() => router.push(`/admin${item.href}`)}
           style={{
             width: "100%",
             textDecoration: "none",
@@ -72,8 +76,13 @@ export default function NavItem(props) {
           <ListItemButton
             style={{
               backgroundColor:
-                router.pathname === item.href ? "rgba(255,255,255, 0.08)" : "",
-              color: router.pathname === item.href ? "#10B981" : "#D1D5DB",
+                router.pathname === `/admin/${item.href}`
+                  ? "rgba(255,255,255, 0.08)"
+                  : "",
+              color:
+                router.pathname === `/admin/${item.href}`
+                  ? "#10B981"
+                  : "#D1D5DB",
             }}
             sx={{
               ":hover": {
@@ -84,14 +93,17 @@ export default function NavItem(props) {
           >
             <ListItemIcon
               sx={{
-                color: router.pathname === item.href ? "#10B981" : "#D1D5DB",
+                color:
+                  router.pathname === `/admin/${item.href}`
+                    ? "#10B981"
+                    : "#D1D5DB",
               }}
             >
               {item.icon}
             </ListItemIcon>
             <ListItemText primary={t(item.title)} />
           </ListItemButton>
-        </NextLink>
+        </Box>
       );
     }
   };

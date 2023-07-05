@@ -1,19 +1,16 @@
-import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Edit as EditIcon } from "../../icons/edit";
-import { Delete as DeleteIcon } from "../../icons/delete";
-import { Show as ShowIcon } from "../../icons/show";
-import { EditPen as EditPenIcon } from "../../icons/editPen";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import DynamicModal from "./DynamicModel";
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 export default function DynamicMenu({ item, model }) {
   const { t } = useTranslation();
-  const [openModal, setOpenModal] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClickMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -69,17 +66,17 @@ export default function DynamicMenu({ item, model }) {
         }}
       >
         <MenuItem onClick={handleOpenMenu}>
-          <EditPenIcon fontSize="small" />
+          <EditIcon fontSize="small" />
           &nbsp; {t("edit")}
         </MenuItem>
-        <MenuItem>
+        {/* <MenuItem>
           <Link href={{ pathname: `/${model}/${item._id}` }}>
             <p style={{ color: "#000", textDecoration: "none" }}>
               <ShowIcon fontSize="small" />
               &nbsp; {t("show")}
             </p>
           </Link>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={handleDelete}>
           <DeleteIcon fontSize="small" />
           &nbsp; {t("delete")}

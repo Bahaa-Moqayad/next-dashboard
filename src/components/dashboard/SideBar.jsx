@@ -17,9 +17,34 @@ const items = [
     title: "Dashboard",
   },
   {
-    href: "/products",
+    href: "/header",
     icon: <ProductionQuantityLimitsIcon fontSize="small" />,
-    title: "products",
+    title: "Header",
+  },
+  {
+    href: "/teams",
+    icon: <ProductionQuantityLimitsIcon fontSize="small" />,
+    title: "Teams",
+  },
+  {
+    href: "/faq",
+    icon: <ProductionQuantityLimitsIcon fontSize="small" />,
+    title: "FAQ",
+  },
+  {
+    href: "/about",
+    icon: <ProductionQuantityLimitsIcon fontSize="small" />,
+    title: "About",
+  },
+  {
+    href: "/features",
+    icon: <ProductionQuantityLimitsIcon fontSize="small" />,
+    title: "Features",
+  },
+  {
+    href: "/messages",
+    icon: <ProductionQuantityLimitsIcon fontSize="small" />,
+    title: "Messages",
   },
 ];
 
@@ -60,7 +85,12 @@ export default function Sidebar(props) {
         >
           <Box>
             <NextLink href="/" passHref>
-              <Image src="/logo.png" width={230} height={190} alt="test" />
+              <Image
+                src="/images/footer-logo.png"
+                width={120}
+                height={80}
+                alt="test"
+              />
             </NextLink>
           </Box>
         </Box>
